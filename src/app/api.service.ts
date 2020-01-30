@@ -33,6 +33,13 @@ export class ApiService {
     )
   }
 
+  addProduto (produto) : Observable<Produto> {
+    return this.http.post<Produto>(apiUrl, produto, httpOptions).pipe(
+      tap((produto: Produto) => console.log(`adicionou o produto com w/ id=${produto._id}`)),
+      catchError(this.handleError<Produto>('addProduto'))
+    )
+  }
+
   private handleError<T> (operation = 'operation', result ? : T) {
     return (error: any): Observable<T> => {
       console.error(error)
