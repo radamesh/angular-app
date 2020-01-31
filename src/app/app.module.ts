@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
-import {  
+import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
@@ -38,6 +38,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,  
     MatButtonModule,
