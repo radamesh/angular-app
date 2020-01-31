@@ -17,26 +17,42 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getProdutos () : Observable<Produto[]> {
+  getProdutos(): Observable<Produto[]> {
     return this.http.get<Produto[]>(apiUrl)
       .pipe(
         tap(produtos => console.log('leu os produtos')),
         catchError(this.handleError('getProdutos', []))
-      );
+      )
   }
 
   getProduto(id: number): Observable<Produto> {
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl}/${id}`
     return this.http.get<Produto>(url).pipe(
       tap(_ => console.log(`leu o produto id=${id}`)),
       catchError(this.handleError<Produto>(`getProduto id=${id}`))
     )
   }
 
-  addProduto (produto) : Observable<Produto> {
+  addProduto(produto): Observable<Produto> {
     return this.http.post<Produto>(apiUrl, produto, httpOptions).pipe(
       tap((produto: Produto) => console.log(`adicionou o produto com w/ id=${produto._id}`)),
       catchError(this.handleError<Produto>('addProduto'))
+    )
+  }
+
+  updateProduto(id, produto): Observable<any> {
+    const url = `${apiUrl}/${id}`
+    return this.http.put(url, produto, httpOptions).pipe(
+      tap(_ => console.log(`atualiza o produto com id=${id}`)),
+      catchError(this.handleError<any>('updateProduto'))
+    )
+  }
+
+  deleteProduto(id): Observable<Produto> {
+    const url = `${apiUrl}/delete/${id}`
+    return this.http.delete<Produto>(url, httpOptions).pipe(
+      tap(_ => console.log(`remove o produto com id=${id}`)),
+      catchError(this.handleError<Produto>('deleteProduto'))
     )
   }
 
