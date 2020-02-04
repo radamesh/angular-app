@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-produto-novo',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutoNovoComponent implements OnInit {
 
-  constructor() { }
+  productForm: FormGroup;
+  isLoadingResults = false;
+
+  constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.productForm = this.formBuilder.group({
+      'nome_produto' : [null, Validators.required],
+      'desc_produto' : [null, Validators.required, Validators.minLength(4)],
+      'preco_produto': [null, Validators.required]
+    });
   }
 
 }
