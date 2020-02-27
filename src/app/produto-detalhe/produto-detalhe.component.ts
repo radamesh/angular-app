@@ -16,4 +16,12 @@ export class ProdutoDetalheComponent implements OnInit {
     this.getProduto(this.route.snapshot.params['id'])
   }
 
+  getProduto(id) {
+    this.api.getProduto(id)
+    .subscribe(data => {
+      this.produto = data
+      console.log(this.produto)
+      this.isLoadResults = false
+    })
+  }
 }
