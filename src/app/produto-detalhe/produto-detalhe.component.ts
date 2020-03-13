@@ -24,4 +24,16 @@ export class ProdutoDetalheComponent implements OnInit {
       this.isLoadResults = false
     })
   }
+
+  deleteProduto(id) {
+    this.isLoadResults = true
+    this.api.deleteProduto(id)
+      .subscribe(res => {
+        this.isLoadResults = false
+        this.router.navigate(['/produtos'])
+      }, (err) => {
+        console.log(err)
+        this.isLoadResults = false
+      })
+  }
 }
