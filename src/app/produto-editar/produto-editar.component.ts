@@ -27,10 +27,26 @@ export class ProdutoEditarComponent implements OnInit {
   }
 
   getProduto(id) {
-
+    this.api.getProduto(id)
+      .subscribe(data => {
+        this._id = data._id
+        this.productForm.setValue({
+          nome_produto: data.nome_produto,
+          desc_produto: data.desc_produto,
+          preco_produto: data.preco_produto
+        })
+      })
   }
 
-  updateProduto() {
-
+  updateProduto(form: NgForm) {
+    this.isLoadResults = true
+    this.api.updateProduto(this._id, form)
+      .subscribe(res => {
+        this.isLoadResults = false
+        this.router.navigate(['/produto-detalhe/' + this._id])
+      }, (err) => {
+        console.log(err)
+        this.isLoadResults = false
+      })
   }
 }
