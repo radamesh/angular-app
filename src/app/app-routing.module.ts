@@ -5,32 +5,43 @@ import { ProdutosComponent } from './produtos/produtos.component';
 import { ProdutoNovoComponent } from './produto-novo/produto-novo.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { ProdutoDetalheComponent } from './produto-detalhe/produto-detalhe.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from 'src/service/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'produtos',
     component: ProdutosComponent,
-    data: { title: ''}
+    canActivate: [AuthGuard],
+    data: { title: 'Lista de Produtos'}
   },
   {
     path: 'produto-novo',
     component: ProdutoNovoComponent,
-    data: { title: ''}
+    canActivate: [AuthGuard],
+    data: { title: 'Adicionar Produto'}
   },
   {
     path: 'produto-editar/:id',
     component: ProdutoEditarComponent,
-    data: { title: ''}
+    canActivate: [AuthGuard],
+    data: { title: 'Editar Produto'}
   },
   {
     path: 'produto-detalhe/:id',
     component: ProdutoDetalheComponent,
-    data: { title: ''}
+    canActivate: [AuthGuard],
+    data: { title: 'Detalhe do Produto'}
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login'}
   },
   {
     path: '',
-    redirectTo: '/produtos',
-    pathMatch: 'full'
+    component: LoginComponent,
+    data: { title: 'Login'}
   }
 ];
 

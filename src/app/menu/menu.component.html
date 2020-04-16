@@ -1,12 +1,13 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/produtos" routeLinkActive="active">Produtos</a>
       <a mat-list-item routerLink="/produto-novo" routeLinkActive="active">Novo Produto</a>
+      <button (click)="logout()" mat-raised-button>Logout</button>
       <!-- <a mat-list-item href="#">Link 3</a> -->
     </mat-nav-list>
   </mat-sidenav>

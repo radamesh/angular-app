@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/service/authntication.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  username: string;
+  hide = true;
+  password: string;
+  title = 'auth-guard-demo';
 
-  constructor() { }
+  constructor(private _auth: AuthenticationService, private _router: Router) {
+    if (this._auth.loggedIn) {
+      this._router.navigate(['produtos'])
+    }
+  }
 
-  ngOnInit() {
+  login() : void {
+    if (this.username != '' && this.password != '') {
+      if (this._auth.login(this.username, this.password)) {
+        this._router.navigate(['produtos'])
+      } else {
+        alert('Erro no nome e no password.')
+      }
+    }
   }
 
 }
