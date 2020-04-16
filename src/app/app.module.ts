@@ -24,6 +24,7 @@ import {
   MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     ProdutoDetalheComponent,
     ProdutoNovoComponent,
     ProdutoEditarComponent,
-    MenuComponent
+    MenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
