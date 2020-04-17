@@ -14,7 +14,8 @@ export class ProdutoNovoComponent implements OnInit {
   productForm: FormGroup
   prod_name: String = ''
   prod_desc: String = ''
-  prod_price: String = ''
+  prod_price: number = null
+  update_at: Date = null
   isLoadingResults = false
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
@@ -33,7 +34,7 @@ export class ProdutoNovoComponent implements OnInit {
       .subscribe(res => {
         const id = res['_id']
         this.isLoadingResults = false
-        this.router.navigate(['/produto-detalhe, id'])
+        this.router.navigate(['/produto-detalhe', id])
       }, (err) => {
         console.log(err)
         this.isLoadingResults = false
